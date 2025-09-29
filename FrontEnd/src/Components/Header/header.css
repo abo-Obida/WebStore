@@ -1,0 +1,130 @@
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 30px;
+  background: #fff;
+  color: #1e3a8a;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Logo */
+.logo a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  text-decoration: none;
+}
+
+/* Desktop Nav */
+.desktop-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.desktop-nav a {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.desktop-nav a:hover {
+  color: #2563eb;
+}
+
+/* Cart */
+.cart-link {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn.login {
+  background: #facc15;
+  color: #111827;
+}
+
+.btn.login:hover {
+  background: #eab308;
+}
+
+.btn.logout {
+  background: #ef4444;
+  color: #fff;
+}
+
+.btn.logout:hover {
+  background: #dc2626;
+}
+
+/* Mobile */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #1e3a8a;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 65px;
+  right: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  padding: 15px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-menu li a,
+.mobile-menu li button {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.mobile-menu li a:hover,
+.mobile-menu li button:hover {
+  color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}

@@ -1,0 +1,61 @@
+.cards-section {
+    padding: 60px 10%;
+    background-color: #f9fafb;
+    text-align: center;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #1f2937;
+  }
+  
+  .cards-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 280px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-icon {
+    font-size: 70px; /* أيقونة كبيرة */
+    color: #4f46e5;  /* بنفسجي */
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+  }
+  
+  .card h3 {
+    font-size: 22px;
+    color: #4f46e5;
+    margin-bottom: 10px;
+  }
+  
+  .card p {
+    color: #4b5563;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Hover Animation */
+  .card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card:hover .card-icon {
+    transform: scale(1.2) rotate(-5deg);
+  }
+  
