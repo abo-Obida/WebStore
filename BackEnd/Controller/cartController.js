@@ -1,7 +1,6 @@
 import User from "../models/User.js";
 import Product from "../models/Product.js";
 
-// ✅ جلب الكارت للمستخدم
 export const getCart = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).populate("cart.product");
@@ -12,7 +11,6 @@ export const getCart = async (req, res) => {
   }
 };
 
-// ✅ إضافة منتج للكارت
 export const addToCart = async (req, res) => {
   try {
     const { productId, qty } = req.body;
@@ -22,7 +20,6 @@ export const addToCart = async (req, res) => {
 
     const user = await User.findById(req.user._id);
 
-    // إذا المنتج موجود مسبقاً بالكارت -> زيد الكمية
     const item = user.cart.find((i) => i.product.toString() === productId);
     if (item) {
       item.qty += qty || 1;
@@ -38,7 +35,6 @@ export const addToCart = async (req, res) => {
   }
 };
 
-// ✅ تحديث الكمية
 export const updateCartItem = async (req, res) => {
   try {
     const { qty } = req.body;
@@ -59,7 +55,6 @@ export const updateCartItem = async (req, res) => {
   }
 };
 
-// ✅ حذف منتج من الكارت
 export const removeFromCart = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -75,7 +70,6 @@ export const removeFromCart = async (req, res) => {
   }
 };
 
-// ✅ مسح الكارت كامل
 export const clearCart = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);

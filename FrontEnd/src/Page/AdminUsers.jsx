@@ -5,7 +5,6 @@ import toast, { Toaster } from "react-hot-toast";
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
 
-  // ✅ جلب المستخدمين من الباك
   useEffect(() => {
     fetch("http://localhost:8000/api/users")
       .then((res) => res.json())
@@ -13,7 +12,6 @@ const AdminUsers = () => {
       .catch((err) => console.error("Error fetching users:", err));
   }, []);
 
-  // ✅ حذف المستخدم
   const handleDelete = async (id, name) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
     if (!confirmDelete) return;
@@ -26,13 +24,12 @@ const AdminUsers = () => {
       if (!res.ok) throw new Error("Failed to delete user");
 
       setUsers(users.filter((user) => user._id !== id));
-      toast.success(`🗑️ User ${name} deleted!`);
+      toast.success(` User ${name} deleted!`);
     } catch (error) {
-      toast.error("❌ Error deleting user");
+      toast.error(" Error deleting user");
     }
   };
 
-  // ✅ تغيير الحالة Active/Inactive
   const handleStatusToggle = async (id, currentStatus, name) => {
     const newStatus = currentStatus === "Active" ? "Inactive" : "Active";
 

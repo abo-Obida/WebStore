@@ -1,7 +1,6 @@
 import Product from "../models/Product.js";
 import cloudinary from "../utils/cloudinary.js";
 
-// ✅ Get all products
 export const getProducts = async (req, res) => {
   try {
     const { search } = req.query;
@@ -24,7 +23,6 @@ export const getProducts = async (req, res) => {
     res.status(500).json({ message: "Error fetching products", error });
   }
 };
-// ✅ Get single product
 export const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -36,7 +34,6 @@ export const getProductById = async (req, res) => {
   }
 };
 
-// ✅ Create product with Cloudinary image upload
 export const createProduct = async (req, res) => {
   try {
     console.log("📩 BODY:", req.body);
@@ -52,9 +49,8 @@ export const createProduct = async (req, res) => {
 
     let imageUrl = "";
 
-    // ✅ إذا وصلت صورة من الـ frontend
     if (req.file) {
-      console.log("⬆️ Uploading to Cloudinary...");
+      console.log(" Uploading to Cloudinary...");
 
       try {
         const result = await new Promise((resolve, reject) => {
@@ -62,10 +58,10 @@ export const createProduct = async (req, res) => {
             { folder: "products" },
             (error, result) => {
               if (error) {
-                console.error("❌ Cloudinary Error:", error);
+                console.error(" Cloudinary Error:", error);
                 reject(error);
               } else {
-                console.log("✅ Cloudinary Upload Success:", result.secure_url);
+                console.log(" Cloudinary Upload Success:", result.secure_url);
                 resolve(result);
               }
             }
@@ -75,12 +71,11 @@ export const createProduct = async (req, res) => {
 
         imageUrl = result.secure_url;
       } catch (err) {
-        console.error("🔥 Cloudinary upload failed:", err);
+        console.error(" Cloudinary upload failed:", err);
         return res.status(500).json({ message: "Cloudinary upload failed", error: err });
       }
     }
 
-    // ✅ حفظ المنتج بالـ MongoDB
     const product = new Product({
       name,
       desc,
@@ -90,16 +85,15 @@ export const createProduct = async (req, res) => {
     });
 
     const savedProduct = await product.save();
-    console.log("✅ Product Saved:", savedProduct);
+    console.log(" Product Saved:", savedProduct);
 
     res.status(201).json(savedProduct);
   } catch (error) {
-    console.error("🔥 General Error:", error);
+    console.error(" General Error:", error);
     res.status(500).json({ message: "Error creating product", error });
   }
 };
 
-// ✅ Update product with optional image
 export const updateProduct = async (req, res) => {
   try {
     console.log("Updating product with body:", req.body, "and file:", req.file);
@@ -137,7 +131,6 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// ✅ Delete product
 export const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);

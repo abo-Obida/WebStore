@@ -1,6 +1,5 @@
 import Order from "../models/Order.js";
 
-// ✅ Get all orders
 export const getOrders = async (req, res) => {
   try {
     const orders = await Order.find().populate("items.productId", "name price");
@@ -10,7 +9,6 @@ export const getOrders = async (req, res) => {
   }
 };
 
-// ✅ Get single order
 export const getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id).populate("items.productId", "name price");
@@ -21,7 +19,6 @@ export const getOrderById = async (req, res) => {
   }
 };
 
-// ✅ Create new order
 export const createOrder = async (req, res) => {
   try {
     const { customer, items, total } = req.body;
@@ -38,7 +35,6 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// ✅ Update order status
 export const updateOrder = async (req, res) => {
   try {
     const { status } = req.body;
@@ -55,7 +51,6 @@ export const updateOrder = async (req, res) => {
   }
 };
 
-// ✅ Delete order
 export const deleteOrder = async (req, res) => {
   try {
     const order = await Order.findByIdAndDelete(req.params.id);
